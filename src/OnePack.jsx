@@ -1,3 +1,5 @@
+// OnePack.jsx
+
 import React from "react";
 
 const OnePack = ({ scrollPosition }) => {
@@ -7,11 +9,13 @@ const OnePack = ({ scrollPosition }) => {
 
   return (
     <div
-      className="fixed left-1/2 transform -translate-x-1/2 font-walbaum text-black z-50"
+      className="fixed left-1/2 transform -translate-x-1/2 font-walbaum z-50"
       style={{
         fontSize: `${fontSize}rem`,
         top: `${topPosition}vh`,
-        transition: "top 0.5s ease, font-size 0.5s ease", // Increased duration to 0.5s
+        mixBlendMode: "exclusion", // Apply blend mode
+        color: "#F7F7F7", // Set text color to background color for blending
+        transition: "top 0.5s ease, font-size 0.5s ease", // Smooth transition
       }}
     >
       One Pack
