@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import Packet from "./Packet";
+import { Environment, Float } from "@react-three/drei";
 
 type Props = {};
 
@@ -18,8 +19,10 @@ const ViewCanvas: React.FC<Props> = () => {
         pointerEvents: "none",
         zIndex: 30, // Below text (z-50)
       }}
-      // Make sure alpha is true so the canvas background is transparent
-      gl={{ antialias: true, alpha: false }} 
+      gl={{
+        antialias: true,
+        alpha: true, // Enable transparency for the canvas
+      }}
       camera={{
         fov: 50,
         near: 0.1,
@@ -30,11 +33,17 @@ const ViewCanvas: React.FC<Props> = () => {
       dpr={[1, 1.5]}
     >
       {/* Lighting */}
-      <ambientLight intensity={1.5} />
-      <spotLight position={[1, 5, 2]} intensity={2.5} />
+      <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
 
-      {/* 3D Model */}
-      <Packet scale={0.3} position={[0, 0, 0]} />
+      <Float 
+      speed={2}
+      rotationIntensity={0.1}
+      floatIntensity={1}
+      floatingRange={[-0.1,0.1]}
+      >
+        {/* 3D Model */}
+        <Packet scale={0.3} position={[0, 0, 0]} />
+      </Float>
     </Canvas>
   );
 };
