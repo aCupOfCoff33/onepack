@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -44,7 +46,7 @@ export default function FirstHero() {
   }, []);
 
   return (
-    <div ref={heroRef} className="w-full my-16 px-8">
+    <div ref={heroRef} className="second-hero w-full my-16 px-8">
       {/* Heading */}
       <h1 className="text-3xl md:text-4xl font-bold text-black underline font-walbaum mb-6 text-left max-w-lg">
         Energize By Day. <br />
@@ -52,12 +54,16 @@ export default function FirstHero() {
       </h1>
 
       {/* Description */}
-      <p className="text-lg md:text-xl font-normal text-black leading-relaxed font-walbaum text-left max-w-lg">
+      <p className="text-lg md:text-xl font-normal text-black leading-relaxed font-walbaum text-left max-w-lg ">
         We make it easy to fuel your lifestyle—on-the-go wellness with perfectly
         portioned, naturally flavored vitamin and energy boosts. Designed for
         busy mornings, restful nights, and everything in between, our
         sustainably packaged products are tailored to your daily needs.
       </p>
-    </div>
+
+        <div style={{ padding: "500px" }}>
+          
+        </div>
+      </div>
   );
 }

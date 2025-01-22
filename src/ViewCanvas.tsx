@@ -1,13 +1,12 @@
 // ViewCanvas.tsx
-
 import { Canvas } from "@react-three/fiber";
 import React from "react";
-import Packet from "./Packet";
-import { Environment, Float } from "@react-three/drei";
 
-type Props = {};
+type ViewCanvasProps = {
+  children?: React.ReactNode;
+};
 
-const ViewCanvas: React.FC<Props> = () => {
+const ViewCanvas: React.FC<ViewCanvasProps> = ({ children }) => {
   return (
     <Canvas
       style={{
@@ -17,11 +16,11 @@ const ViewCanvas: React.FC<Props> = () => {
         transform: "translateX(-50%)",
         overflow: "hidden",
         pointerEvents: "none",
-        zIndex: 30, // Below text (z-50)
+        zIndex: 30,
       }}
       gl={{
         antialias: true,
-        alpha: true, // Enable transparency for the canvas
+        alpha: true,
       }}
       camera={{
         fov: 50,
@@ -32,18 +31,13 @@ const ViewCanvas: React.FC<Props> = () => {
       shadows
       dpr={[1, 1.5]}
     >
-      {/* Lighting */}
-      <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
+      {/* Render the scene passed in as children */}
+      {children}
 
-      <Float 
-      speed={2}
-      rotationIntensity={0.1}
-      floatIntensity={1}
-      floatingRange={[-0.1,0.1]}
-      >
-        {/* 3D Model */}
-        <Packet scale={0.3} position={[0, 0, 0]} />
-      </Float>
+      {/* If you really want the <View> API from @react-three/drei, set it up properly: */}
+      {/* <View track={...}>
+        <Scene />
+      </View> */}
     </Canvas>
   );
 };

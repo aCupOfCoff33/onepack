@@ -1,5 +1,3 @@
-// PlasticWrapper.tsx (TypeScript)
-
 import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -8,6 +6,8 @@ useGLTF.preload("/scene.gltf");
 
 const wrapperTextures = {
   base: "/textures/base.png",
+  base2: "/textures/base2.png",
+  base3: "/textures/base3.png",
 };
 
 const plasticMaterial = new THREE.MeshStandardMaterial({
@@ -32,7 +32,6 @@ export function PlasticWrapper({
   rotation = [0, 0, 0],
   ...props
 }: PlasticWrapperProps) {
-  // Because GLTF can vary, you might define a typed interface or just use "any"
   const { nodes } = useGLTF("/scene.gltf") as any;
 
   const textures = useTexture(wrapperTextures);
@@ -44,13 +43,17 @@ export function PlasticWrapper({
 
   const wrapperTexture = textures[texture];
 
+  // Fallback materials to avoid missing texture errors
+  const fallbackMaterial = new THREE.MeshStandardMaterial({ color: "#aaaaaa" });
+
   return (
     <group
       {...props}
       dispose={null}
       position={position}
       scale={scale}
-      rotation={[Math.PI / 15, Math.PI / -40, Math.PI / -4]}
+      /*rotation={[Math.PI / 15, Math.PI / -40, Math.PI / -4]}*/
+      rotation={rotation}
     >
       {/* Base Plastic Mesh */}
       <mesh
@@ -66,7 +69,7 @@ export function PlasticWrapper({
         geometry={nodes.pCube1_lambert2_0.geometry}
       >
         <meshStandardMaterial
-          map={wrapperTexture}
+          map={wrapperTexture || null} // Avoid null map errors
           roughness={0.3}
           polygonOffset
           polygonOffsetFactor={-1}
