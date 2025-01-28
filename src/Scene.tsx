@@ -35,7 +35,7 @@ export default function Scene() {
     // 1) INITIAL POSITIONS
     gsap.set(packet1Ref.current.position, { x: -2.1, y: 0, z: 0 });
     gsap.set(packet2Ref.current.position, { x: 1.96, y: 1.25, z: 0 });
-    gsap.set(packet3Ref.current.position, { x: -50, y: 0, z: 0 });
+    gsap.set(packet3Ref.current.position, { x: -15, y: 0, z: 0 }); // Start off-screen left
 
     const SIZE_OF_PACKET = 0.6;
     [packet1Ref, packet2Ref, packet3Ref].forEach((packet) => {
@@ -46,23 +46,13 @@ export default function Scene() {
       });
     });
 
-    gsap.set(packet1Ref.current.rotation, {
-      x: Math.PI / 2,
-      y: 0,
-      z: Math.PI / 2 + Math.PI,
-    });
-    gsap.set(packet2Ref.current.rotation, {
-      x: Math.PI / 2,
-      y: 0,
-      z: -Math.PI / 2 - Math.PI,
-    });
     gsap.set(packet3Ref.current.rotation, {
       x: 0,
       y: Math.PI / 2,
       z: 0,
     });
 
-    // 2) INTRO (slide packets 1 and 2 in)
+    // 2) INTRO ANIMATIONS (packet1 & packet2)
     const introT1 = gsap.timeline({
       defaults: { duration: 1.5, ease: "power2.out" },
     });
@@ -79,32 +69,58 @@ export default function Scene() {
       0.5
     );
 
-    // 3) SCROLL ANIMATION: rotate only rotatingGroupRef
+    // 3) SCROLL ANIMATION
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".first-hero",
-        start: "center+=150 top",
+        start: "center-=200 top",
         endTrigger: ".second-hero",
-        end: "top+=120 center",
+        end: "top+=100 center",
         scrub: 1.5,
-        markers: true,
+        markers: true, // Remove in production
       },
     });
 
     timeline
-      .to(rotatingGroupRef.current.rotation, {
-        y: Math.PI,
-      })
+      // Rotate main group
+      .to(rotatingGroupRef.current.rotation, { y: Math.PI }, 0)
+      
+      // Animate packet2 to left side
+      .to(packet2Ref.current.position, { 
+        x: -2, 
+        y: -0.7, 
+        z: -2 
+      }, 0)
+      .to(packet2Ref.current.rotation, { 
+        x: 0, 
+        y: 3, 
+        z: -0.3 
+      }, 0)
+      
+      // Animate packet1 to right side
+      .to(packet1Ref.current.position, { 
+        x: 2, // Adjusted to create space for packet3
+        y: -0.7, 
+        z: -2 
+      }, 0)
+      .to(packet1Ref.current.rotation, { 
+        x: 0, 
+        y: -3, 
+        z: 0.3 
+      }, 0)
+      
+      // Bring packet3 to center
+      .to(packet3Ref.current.position, { 
+        x: 0, 
+        y: -0.7, 
+        z: -2 
+      }, 0)
+      .to(packet3Ref.current.rotation, { 
+        x: 0, 
+        y: 0, 
+        z: 0 
+      }, 0);
 
-      // Packet 1 Animation (stay on the left)
-      .to(packet1Ref.current.position, { x: -0.2, y: -0.7, z: -2 }, 0)
-      .to(packet1Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0)
-
-      // Packet 2 Animation (move further to the right after rotation)
-      .to(packet2Ref.current.position, { x: -3, y: -0.7, z: -2 }, 1) // Moves further right (x: 3)
-      .to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0.5);
-
-    // Add independent animations if needed
   }, []);
 
   return (
