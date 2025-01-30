@@ -19,7 +19,7 @@ export default function FirstHero() {
 
     // Create the animation and store the ScrollTrigger instance
     const animation = gsap.to(element, {
-      x: 0,
+      x: 3,
       opacity: 1,
       duration: 1,
       ease: "back.out(3)",
@@ -48,13 +48,13 @@ export default function FirstHero() {
   return (
     <div ref={heroRef} className="second-hero w-full my-16 px-8">
       {/* Heading */}
-      <h1 className="text-3xl md:text-4xl font-bold text-black underline font-walbaum mb-6 text-left max-w-lg">
+      <h1 className="pl-10px text-3xl md:text-4xl font-bold text-black underline font-walbaum mb-6 text-left max-w-lg">
         Energize By Day. <br />
         Rejuvenate By Night.
       </h1>
 
       {/* Description */}
-      <p className="text-lg md:text-xl font-normal text-black leading-relaxed font-walbaum text-left max-w-lg ">
+      <p className="pl-30px text-lg md:text-xl font-normal text-black leading-relaxed font-walbaum text-left max-w-lg ">
         We make it easy to fuel your lifestyle—on-the-go wellness with perfectly
         portioned, naturally flavored vitamin and energy boosts. Designed for
         busy mornings, restful nights, and everything in between, our

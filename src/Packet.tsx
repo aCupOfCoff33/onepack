@@ -52,7 +52,6 @@ export function PlasticWrapper({
       dispose={null}
       position={position}
       scale={scale}
-      /*rotation={[Math.PI / 15, Math.PI / -40, Math.PI / -4]}*/
       rotation={rotation}
     >
       {/* Base Plastic Mesh */}

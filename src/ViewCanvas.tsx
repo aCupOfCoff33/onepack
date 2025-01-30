@@ -31,13 +31,7 @@ const ViewCanvas: React.FC<ViewCanvasProps> = ({ children }) => {
       shadows
       dpr={[1, 1.5]}
     >
-      {/* Render the scene passed in as children */}
       {children}
-
-      {/* If you really want the <View> API from @react-three/drei, set it up properly: */}
-      {/* <View track={...}>
-        <Scene />
-      </View> */}
     </Canvas>
   );
 };
