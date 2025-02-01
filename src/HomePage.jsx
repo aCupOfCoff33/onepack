@@ -6,6 +6,7 @@ import OnePack from "./OnePack";
 import ViewCanvas from "./ViewCanvas";
 import FirstHero from "./FirstHero";
 import Scene from "./Scene";
+import Information from "./Information";
 
 const HomePage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -31,7 +32,7 @@ const HomePage = () => {
 
       {/* Hero Section */}
       <div
-        className="absolute left-1/2 transform -translate-x-1/2 text-black text-4xl font-normal font-walbaum z-20"
+        className="absolute left-1/2 transform -translate-x-1/2 text-black text-4xl font-normal font-walbaum z-10"
         style={{ top: "60vh" }}
       >
         Balance Your Day, Elevate Your Night
@@ -40,6 +41,9 @@ const HomePage = () => {
       <div className="first-hero-trigger">
         <FirstHero />
       </div>
+      <div className = "second-hero-trigger">
+        <Information />
+      </div>  
     </div>
   );
 };

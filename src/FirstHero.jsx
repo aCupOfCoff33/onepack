@@ -25,7 +25,7 @@ export default function FirstHero() {
       ease: "back.out(3)",
       scrollTrigger: {
         trigger: element,
-        start: "top 80%", // When the top of the element hits 80% of the viewport height
+        start: "top 60%", // When the top of the element hits 80% of the viewport height
         toggleActions: "play none none none",
       },
     });
@@ -60,10 +60,6 @@ export default function FirstHero() {
         busy mornings, restful nights, and everything in between, our
         sustainably packaged products are tailored to your daily needs.
       </p>
-
-        <div style={{ padding: "500px" }}>
-          
-        </div>
-      </div>
+    </div>
   );
 }

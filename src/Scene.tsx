@@ -60,7 +60,7 @@ export default function Scene() {
     });
     // Only modify packet3's initial rotation
     gsap.set(packet3Ref.current.rotation, {
-      x: Math.PI,
+      x: -Math.PI,
       y: 0,
       z: Math.PI / 2 ,
     });
@@ -87,7 +87,8 @@ export default function Scene() {
     introT1.from(
       packet3Ref.current.position,
       {
-        x: 15, // Start further out to prevent overlap
+        x: 30, // Start further out to prevent overlap
+        z: -20,
         duration: 1.5,
         ease: "power.out",
       },
@@ -115,10 +116,10 @@ export default function Scene() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".first-hero",
-        start: "center-=200 top",
+        start: "top top",
+        end: "bottom-=200 center",
         endTrigger: ".second-hero",
-        end: "top+=100 center",
-        scrub: 1.5,
+        scrub: 2,
         markers: false,
       },
     });
@@ -136,18 +137,20 @@ export default function Scene() {
     // Modified ONLY packet3 scroll animation
     timeline.to(packet3Ref.current.position, { x: 3.5, y: -0.7, z: 2 }, 0);
     timeline.to(packet3Ref.current.rotation, { x: 0, y: 0, z: -0.3 }, 0);
-
+    
     gsap.to(sceneGroupRef.current.position, {
       y: 15, 
       ease: "power2.in",
       scrollTrigger: {
         trigger: ".second-hero",
-        start: "top+= 50 top",
-        end: "bottom center",
+        start: "bottom-= 500 center",
+        end: "top+=600 top",
         scrub: 1.5,
         markers: false,
+
       },
     });
+  
   }, []);
 
   return (
