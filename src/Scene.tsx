@@ -62,7 +62,7 @@ export default function Scene() {
     gsap.set(packet3Ref.current.rotation, {
       x: -Math.PI,
       y: 0,
-      z: Math.PI / 2 ,
+      z: Math.PI / 2,
     });
 
     // 2) INTRO - Keep original packet1/2 animations, only modify packet3
@@ -102,15 +102,10 @@ export default function Scene() {
         x: Math.PI,
         duration: 1.8,
       },
-      .75
+      0.75
     );
 
-    introT1.from(
-      packet3Ref.current.scale,
-      { x: 0.6, y: 0.6, z: 0.6},
-      0.5
-    );
-
+    introT1.from(packet3Ref.current.scale, { x: 0.6, y: 0.6, z: 0.6 }, 0.5);
 
     // 3) SCROLL ANIMATION - Keep original packet1/2 animations
     const timeline = gsap.timeline({
@@ -127,30 +122,27 @@ export default function Scene() {
     // Preserve original rotating group animation
     timeline.to(rotatingGroupRef.current.rotation, { y: Math.PI });
 
-
     // Keep original packet1/2 scroll animations
-    timeline.to(packet2Ref.current.position, { x: -2, y: -0.7, z: -2 }, 0);
+    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
     timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
-    timeline.to(packet1Ref.current.position, { x: -5, y: -0.7, z: -2 }, 0);
+    timeline.to(packet1Ref.current.position, { x: -4.5, y: -0.7, z: -2 }, 0);
     timeline.to(packet1Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
 
     // Modified ONLY packet3 scroll animation
-    timeline.to(packet3Ref.current.position, { x: 3.5, y: -0.7, z: 2 }, 0);
+    timeline.to(packet3Ref.current.position, { x: 2.75, y: -0.7, z: 2 }, 0);
     timeline.to(packet3Ref.current.rotation, { x: 0, y: 0, z: -0.3 }, 0);
-    
+
     gsap.to(sceneGroupRef.current.position, {
-      y: 15, 
+      y: 15,
       ease: "power2.in",
       scrollTrigger: {
         trigger: ".second-hero",
-        start: "bottom-= 500 center",
-        end: "top+=600 top",
+        start: "bottom+= 3000 top",
+        end: "bottom+=900 top",
         scrub: 1.5,
         markers: false,
-
       },
     });
-  
   }, []);
 
   return (

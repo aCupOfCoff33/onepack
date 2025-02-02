@@ -11,6 +11,7 @@ export default function Information() {
 
   useEffect(() => {
     if (containerRef.current && textRefs.every((ref) => ref.current)) {
+      // Set the first paragraph's opacity to 1, and do not animate it
       gsap.set(textRefs[0].current, { opacity: 1 });
       gsap.set(
         textRefs.slice(1).map((ref) => ref.current),
@@ -24,7 +25,7 @@ export default function Information() {
           end: "+=400%",
           scrub: true,
           pin: true,
-          markers: true,
+          markers: false,
         },
       });
 
@@ -34,12 +35,20 @@ export default function Information() {
           tl.to(containerRef.current, {
             x: index % 2 === 0 ? "5%" : "70%",
             duration: 1,
+            ease: "power1.inOut",
           });
 
           // Then fade in the new text
           tl.to(textRefs[index - 1].current, { opacity: 0, duration: 1 });
           tl.to(textRefs[index].current, { opacity: 1, duration: 1 }, "-=0.5");
         }
+      });
+
+      // Reset x position after animation ends
+      tl.to(containerRef.current, {
+        x: 0, // reset to original position
+        duration: 1,
+        ease: "power1.inOut",
       });
 
       return () => {
@@ -73,7 +82,7 @@ export default function Information() {
               </p>
               <p
                 ref={textRefs[1]}
-                className="absolute inset-0 text-2xl leading-relaxed text-justify"
+                className="absolute inset-0 text-2xl leading-relaxed text-justify packets-1"
               >
                 We believe your wellness routine should energize your mornings,
                 sustain you throughout the day, and restore your nights.
@@ -84,7 +93,7 @@ export default function Information() {
               </p>
               <p
                 ref={textRefs[2]}
-                className="absolute inset-0 text-2xl leading-relaxed text-justify"
+                className="absolute inset-0 text-2xl leading-relaxed text-justify packets-2"
               >
                 We believe your wellness routine should energize your mornings,
                 sustain you throughout the day, and restore your nights.
@@ -95,7 +104,7 @@ export default function Information() {
               </p>
               <p
                 ref={textRefs[3]}
-                className="absolute inset-0 text-2xl leading-relaxed text-justify"
+                className="absolute inset-0 text-2xl leading-relaxed text-justify packets-3"
               >
                 We believe your wellness routine should energize your mornings,
                 sustain you throughout the day, and restore your nights.
@@ -110,7 +119,7 @@ export default function Information() {
         </div>
       </section>
 
-      <div className="min-h-[500vh]"></div>
-    </>
+      <div className="min-h-[400vh]"></div>
+    </> 
   );
 }
