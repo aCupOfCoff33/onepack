@@ -118,19 +118,38 @@ export default function Scene() {
         markers: false,
       },
     });
-
     // Preserve original rotating group animation
     timeline.to(rotatingGroupRef.current.rotation, { y: Math.PI });
 
-    // Keep original packet1/2 scroll animations
+    /*
+    //Actual Animations
     timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
     timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
+
+    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
+    timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
+
     timeline.to(packet1Ref.current.position, { x: -4.5, y: -0.7, z: -2 }, 0);
     timeline.to(packet1Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
 
     // Modified ONLY packet3 scroll animation
     timeline.to(packet3Ref.current.position, { x: 2.75, y: -0.7, z: 2 }, 0);
     timeline.to(packet3Ref.current.rotation, { x: 0, y: 0, z: -0.3 }, 0);
+    */
+    
+    //Fake Ones
+    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
+    timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: 0 }, 0);
+
+    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
+    timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: 0 }, 0);
+
+    timeline.to(packet1Ref.current.position, { x: -4.5, y: -0.7, z: -2 }, 0);
+    timeline.to(packet1Ref.current.rotation, { x: 0, y: 3, z: 0 }, 0);
+
+    // Modified ONLY packet3 scroll animation
+    timeline.to(packet3Ref.current.position, { x: 2.75, y: -0.7, z: 2 }, 0);
+    timeline.to(packet3Ref.current.rotation, { x: 0, y: 0, z: 0 }, 0);
 
     gsap.to(sceneGroupRef.current.position, {
       y: 15,

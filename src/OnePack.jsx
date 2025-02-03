@@ -3,7 +3,7 @@ import React from "react";
 const OnePack = () => {
   return (
     // 1) Fill the window and center everything
-    <div className=" w-screen h-screen flex items-center justify-center bg-white">
+    <div className=" w-screen h-screen flex items-center justify-center">
       {/* 2) Our bounding box to hold the text/bars in a known area */}
       <div className="relative w-[700px] h-[300px] bg-[#f7f7f7]">
         {/* "ONE" text in top-left corner */}
