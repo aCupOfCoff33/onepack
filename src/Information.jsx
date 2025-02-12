@@ -207,8 +207,6 @@ export default function Information() {
           </div>
         </div>
       </section>
-
-      <div className="min-h-[600vh]"></div>
     </>
   );
 }
