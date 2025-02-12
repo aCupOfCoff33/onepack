@@ -151,7 +151,7 @@ export default function Information() {
     <>
       <section
         ref={sectionRef} // The entire section is the scroll trigger.
-        className="min-h-screen flex items-center justify-center text-bold"
+        className="second-hero-information min-h-screen flex items-center justify-center text-bold"
       >
         <div ref={containerRef} className="p-10 flex" style={{ width: "100%" }}>
           <div className="w-[300vw]">

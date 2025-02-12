@@ -8,7 +8,7 @@ export default function OnePackCard() {
     AM: "Morning essentials pack: Start your day right with our AM bundle featuring energizing supplements and vital nutrients.",
     PM: "Evening relaxation pack: Wind down effectively with our PM bundle containing calming herbs and sleep-supporting compounds.",
     Replenish:
-      "Auto-refill package: Never run out of essentials with our smart replenishment system delivering products when you need them.",
+      "designed to restore essential nutrients and support recovery, after physical activity or during times of stress and fatigue.",
   };
 
   return (
@@ -20,7 +20,7 @@ export default function OnePackCard() {
             <button
               key={time}
               onClick={() => setSelectedTime(time)}
-              className={`px-4 py-2 text-2xl font-normal border border-black rounded-lg transition-all
+              className={`px-4 py-2 text-lg font-normal border border-black rounded-lg transition-all
                 ${
                   selectedTime === time
                     ? "bg-[#D9D9D9] text-black border-2"
@@ -31,15 +31,15 @@ export default function OnePackCard() {
             </button>
           ))}
         </div>
-        <p className="font-walbaum text-xl text-center mt-4 px-4">
+        <p className="font-walbaum text-lg text-center mt-4 px-4">
           {timeDescriptions[selectedTime]}
         </p>
-        <div className="font-walbaum flex justify-center space-x-4 mt-6">
-          {["1 Pack", "2 Pack", "3 Pack"].map((pack) => (
+        <div className="grid grid-cols-2 gap-2 mt-6 w-full">
+          {["1 Pack", "2 Pack", "3 Pack", "4 Pack"].map((pack) => (
             <button
               key={pack}
               onClick={() => setSelectedPack(pack)}
-              className={`w-28 h-14 rounded-2xl border-2 text-xl transition-all
+              className={`w-full h-12 rounded-xl border-2 text-lg transition-all
                 ${
                   selectedPack === pack
                     ? "bg-[#808080] text-white border-[#808080]"
@@ -51,15 +51,15 @@ export default function OnePackCard() {
           ))}
         </div>
         <button
-          className="font-walbaum w-full h-14 mt-6 rounded-2xl border-2 border-black text-xl transition-all 
+          className="font-walbaum w-full h-14 mt-6 rounded-2xl border-2 border-black text-lg transition-all 
           hover:bg-black hover:text-white"
         >
           ADD TO CART
         </button>
-        <p className="font-walbaum text-center text-xl mt-4">
-          Enjoy 15% off orders $50+ with code AARYAN
+        <p className="font-walbaum text-center text-lg mt-4">
+          Enjoy 50% off shipping on ordering 3 Packs
           <br />
-          Free shipping on orders $30+
+          And shipping is on us for ordering 4 Packs!
         </p>
       </div>
     </div>

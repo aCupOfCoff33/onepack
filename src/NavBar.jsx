@@ -19,20 +19,68 @@ const NavBar = () => {
 
         {/* Navigation Links */}
         <div
-          className={`absolute lg:static top-16 left-0 w-full bg-[#f7f7f7] lg:bg-transparent lg:flex space-y-4 lg:space-y-0 lg:space-x-8 text-black text-lg font-normal font-walbaum transition-all duration-300 ease-in-out ${menuOpen ? "block" : "hidden"}`}
+          className={`absolute lg:static top-16 left-0 w-full bg-[#f7f7f7] lg:bg-transparent lg:flex space-y-4 lg:space-y-0 lg:space-x-8 text-black text-lg font-normal font-walbaum transition-all duration-300 ease-in-out ${
+            menuOpen ? "block" : "hidden"
+          }`}
         >
-          <a href="#shop" className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0">
+          <a
+            href="#shop"
+            className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0"
+          >
             Shop
           </a>
-          <a href="#our-story" className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0">
+          <a
+            href="#our-story"
+            className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0"
+          >
             Our Story
           </a>
-          <a href="#benefits" className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0">
+          <a
+            href="#benefits"
+            className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0"
+          >
             Benefits
           </a>
-          <a href="#contact-us" className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0">
+          <a
+            href="#contact-us"
+            className="block lg:inline hover:underline px-8 lg:px-0 py-2 lg:py-0"
+          >
             Contact Us
           </a>
+        </div>
+
+        {/* Cart & Account Icons */}
+        <div className="flex space-x-6 items-center">
+          {/* Account Icon */}
+          <svg
+            className="h-8 w-8 text-black cursor-pointer"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="7" r="4" />
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+          </svg>
+
+          {/* Shopping Cart Icon */}
+          <svg
+            className="h-8 w-8 text-black cursor-pointer"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
+          </svg>
         </div>
       </div>
     </nav>
