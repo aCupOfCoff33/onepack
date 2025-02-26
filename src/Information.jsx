@@ -26,7 +26,7 @@ export default function Information() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "center+=50 center",
+          start: "center center",
           end: "+=1000%", // Increased scroll distance to slow down the animation
           scrub: 5, // 2-second delay for a smoother (and slower) progression
           pin: true,

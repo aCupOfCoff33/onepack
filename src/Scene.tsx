@@ -153,7 +153,7 @@ export default function Scene() {
         start: "top top",
         end: "bottom+=1000 top",
         scrub: 5,
-        markers: true, // Enable markers during development if needed
+        markers: false, // Enable markers during development if needed
       },
     });
 
