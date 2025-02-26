@@ -26,9 +26,9 @@ export default function Information() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "center center",
-          end: "+=600%", // Increased scroll distance to slow down the animation
-          scrub: 2, // 2-second delay for a smoother (and slower) progression
+          start: "center+=50 center",
+          end: "+=1000%", // Increased scroll distance to slow down the animation
+          scrub: 5, // 2-second delay for a smoother (and slower) progression
           pin: true,
           markers: false,
         },
@@ -208,7 +208,7 @@ export default function Information() {
         </div>
       </section>
 
-      <div className="min-h-[600vh]"></div>
+      <div className="min-h-[1000vh] bg-transparent pointer-events-none"></div>
     </>
   );
 }

@@ -5,6 +5,8 @@ import { Environment } from "@react-three/drei";
 import { Group } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { info } from "console";
+import { Pi } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,39 +123,95 @@ export default function Scene() {
     // Preserve original rotating group animation
     timeline.to(rotatingGroupRef.current.rotation, { y: Math.PI });
 
-
-    //Actual Animations
-    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
+    // Actual Animations
+    timeline.to(packet2Ref.current.position, { x: -1, y: -2, z: -2 }, 0);
     timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
 
-    timeline.to(packet2Ref.current.position, { x: -1, y: -0.7, z: -2 }, 0);
-    timeline.to(packet2Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
-
-    timeline.to(packet1Ref.current.position, { x: -4.5, y: -0.7, z: -2 }, 0);
+    timeline.to(packet1Ref.current.position, { x: -4.5, y: -2, z: -2 }, 0);
     timeline.to(packet1Ref.current.rotation, { x: 0, y: 3, z: -0.3 }, 0);
 
     // Modified ONLY packet3 scroll animation
-    timeline.to(packet3Ref.current.position, { x: 2.75, y: -0.7, z: 2 }, 0);
+    timeline.to(packet3Ref.current.position, { x: 2.75, y: -2, z: 2 }, 0);
     timeline.to(packet3Ref.current.rotation, { x: 0, y: 0, z: -0.3 }, 0);
 
-
-  
-
     gsap.to(sceneGroupRef.current.position, {
-      y: 15,
+      y: 9,
       ease: "power2.in",
       scrollTrigger: {
         trigger: ".second-hero",
         start: "bottom+= 3000 top",
-        end: "bottom+=900 top",
+        end: "bottom top",
         scrub: 1.5,
         markers: false,
       },
     });
-  }, 
-  
-  
-  []);
+
+    // NEW TIMELINE: Additional GSAP animations for packet movements during the Information scroll section.
+    const infoTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".second-hero-trigger", // This should match the Information section trigger
+        start: "top top",
+        end: "bottom+=1000 top",
+        scrub: 5,
+        markers: true, // Enable markers during development if needed
+      },
+    });
+
+    // Initial horizontal split: first and third packets go left, second packet goes right
+    infoTimeline.to(
+      packet2Ref.current.position,
+      { x: 30, z: -5, duration: 1, ease: "power1.inOut" },
+      0
+    );
+    infoTimeline.to(
+      packet3Ref.current.position,
+      { x: 0, z: 10, duration: 1, ease: "power1.inOut" },
+      0
+    );
+    infoTimeline.to(
+      packet1Ref.current.position,
+      { x: 5, z: -5, duration: 1, ease: "power1.inOut" },
+      0
+    );
+
+    // First packet moves downward (packet1)
+    infoTimeline.to(
+      packet2Ref.current.position,
+      { y: -20, duration: 0.5, ease: "power1.inOut" },
+      0
+    );
+
+    // After some time, third packet moves downward (packet3)
+    infoTimeline.to(
+      packet3Ref.current.position,
+      { y: -20, duration: 0.5, ease: "power1.inOut" },
+      0.2 // More delay after first packet
+    );
+
+    // After even more time, second packet moves downward (packet2)
+    infoTimeline.to(
+      packet1Ref.current.position,
+      { y: -20, duration: 0.5, ease: "power1.inOut" },
+      0.4 // Even more delay after third packet
+    );
+
+    // Add rotations to make the movement look more natural
+    infoTimeline.to(
+      packet3Ref.current.rotation,
+      { x: 0, y: 1, z: 0, duration: 1, ease: "power1.inOut" },
+      0
+    );
+    infoTimeline.to(
+      packet2Ref.current.rotation,
+      { x: 0, y: 6, z: 0, duration: 1, ease: "power1.inOut" },
+      0
+    );
+    infoTimeline.to(
+      packet1Ref.current.rotation,
+      { x: 0, y: -1, z: 0, duration: 1, ease: "power1.inOut" },
+      0
+    );
+  }, []);
 
   return (
     <group ref={sceneGroupRef}>
@@ -166,7 +224,7 @@ export default function Scene() {
           <FloatingPacket ref={packet2Ref} packet="base2" floatSpeed={1.5} />
         </group>
       </group>
-      {/* Keep packet3's group structure */}
+      {/* Keep Packet3's group structure */}
       <group>
         <FloatingPacket ref={packet3Ref} packet="base3" floatSpeed={1.5} />
       </group>
