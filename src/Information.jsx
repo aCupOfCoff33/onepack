@@ -207,8 +207,6 @@ export default function Information() {
           </div>
         </div>
       </section>
-
-      <div className="min-h-[1000vh] bg-transparent pointer-events-none"></div>
     </>
   );
 }
